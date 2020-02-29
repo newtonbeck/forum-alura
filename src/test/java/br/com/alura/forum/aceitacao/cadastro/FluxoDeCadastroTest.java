@@ -2,6 +2,7 @@ package br.com.alura.forum.aceitacao.cadastro;
 
 import java.io.IOException;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,6 +12,7 @@ import com.github.javafaker.Faker;
 
 public class FluxoDeCadastroTest {
 
+	@Disabled
 	@Test
 	public void deve_ser_capaz_de_criar_uma_conta() throws IOException {
 		Faker faker = new Faker();

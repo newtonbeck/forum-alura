@@ -26,6 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.and().authorizeRequests()
 		.antMatchers(HttpMethod.GET, "/metrics/prometheus").permitAll()
 		.antMatchers(HttpMethod.GET, "/").permitAll()
+		.antMatchers(HttpMethod.GET, "/home").permitAll()
 		.antMatchers(HttpMethod.GET, "/topicos").permitAll()
 		.antMatchers(HttpMethod.GET, "/topicos/novo").authenticated()
 		.antMatchers(HttpMethod.GET, "/topicos/*").permitAll()
