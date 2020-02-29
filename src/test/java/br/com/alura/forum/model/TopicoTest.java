@@ -1,7 +1,8 @@
 package br.com.alura.forum.model;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 public class TopicoTest {
 
@@ -14,11 +15,11 @@ public class TopicoTest {
 		Topico topico = new Topico("Me ajudem", "O Java não funciona no meu computador!", autor , curso );
 				
 		// Então
-		Assertions.assertEquals(StatusTopico.NAO_RESPONDIDO, topico.getStatus());
+		assertEquals(StatusTopico.NAO_RESPONDIDO, topico.getStatus());
 	}
 	
 	@Test
-	public void o_estado_deve_ser_fechado_quando_fechar_um_topico() {
+	public void o_estado_deve_ser_fechado_quando_fechar_um_topico() throws InterruptedException {
 		// Dado
 		Usuario autor = new Usuario("Newton", "newton@caelum.com", "abc123");
 		Categoria categoria = new Categoria("Programação");
@@ -29,7 +30,7 @@ public class TopicoTest {
 		topico.fechar();
 		
 		// Então
-		Assertions.assertEquals(StatusTopico.FECHADO, topico.getStatus()); 
+		assertEquals(StatusTopico.FECHADO, topico.getStatus());
 	}
 	
 	@Test
@@ -39,14 +40,38 @@ public class TopicoTest {
 		Categoria categoria = new Categoria("Programação");
 		Curso curso = new Curso("Java Básico", categoria );
 		Topico topico = new Topico("Me ajudem", "O Java não funciona no meu computador!", autor , curso );
-				
-		Resposta resposta = new Resposta("Adicione o Java no PATH", topico, autor);
 		
 		// Quando
-		topico.addResposta(resposta);
+		Resposta resposta = new Resposta("Adicione o Java no PATH", topico, autor);
 		
 		// Então
-		Assertions.assertEquals(2, topico.getRespostas().size());
+		assertEquals(1, topico.getRespostas().size());
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void deve_lancar_excecao_ao_tentar_marcar_como_solucionado_um_topico_sem_resposta() {
+		// Dado
+		Usuario autor = new Usuario("Newton", "newton@caelum.com", "abc123");
+		Categoria categoria = new Categoria("Programação");
+		Curso curso = new Curso("Java Básico", categoria );
+		Topico topico = new Topico("Me ajudem", "O Java não funciona no meu computador!", autor , curso );
+		
+		topico.marcarComoSolucionado();
+	}
+	
+	@Test
+	public void deve_marcar_como_solucionado_um_topico_com_pelo_menos_uma_resposta() {
+		// Dado
+		Usuario autor = new Usuario("Newton", "newton@caelum.com", "abc123");
+		Categoria categoria = new Categoria("Programação");
+		Curso curso = new Curso("Java Básico", categoria );
+		Topico topico = new Topico("Me ajudem", "O Java não funciona no meu computador!", autor , curso );
+		
+		// Quando
+		new Resposta("Adicione o Java no PATH", topico, autor);
+		topico.marcarComoSolucionado();
+		
+		assertEquals(StatusTopico.SOLUCIONADO, topico.getStatus());
 	}
 
 }
