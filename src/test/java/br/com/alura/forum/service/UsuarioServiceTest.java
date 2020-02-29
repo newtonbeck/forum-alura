@@ -11,6 +11,8 @@ import br.com.alura.forum.model.Usuario;
 
 public class UsuarioServiceTest {
 
+	// TODO Adicionar o before aqui
+	
 	@Test(expected = UsernameNotFoundException.class)
 	public void deve_lancar_excecao_ao_buscar_usuario_por_email_que_nao_existe_no_banco() {
 		UsuarioDao dao = Mockito.mock(UsuarioDao.class);
