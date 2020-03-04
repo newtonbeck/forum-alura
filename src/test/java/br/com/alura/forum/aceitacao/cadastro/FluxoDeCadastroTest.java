@@ -24,7 +24,9 @@ public class FluxoDeCadastroTest {
 	
 	@After
 	public void depois() {
-		browser.close();
+		if (browser != null) {
+			browser.close();
+		}
 	}
 	
 	@Test
