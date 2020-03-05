@@ -12,3 +12,16 @@
   - name: Creates MySQL user, database and tables
     become: yes
     shell: mysql -u root < /home/vagrant/script.sql
+  - name: Configure MySQL network
+    become: yes
+    copy:
+      remote_src: yes
+      src: /home/vagrant/mysqld.cnf
+      dest: /etc/mysql/mysql.conf.d/mysqld.cnf
+      owner: root
+      group: root
+  - name: Restarts MySQL
+    become: yes
+    service:
+      name: mysql
+      state: restarted

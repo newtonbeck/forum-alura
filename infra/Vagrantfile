@@ -2,9 +2,10 @@ Vagrant.configure("2") do |config|
 	config.vm.box = "ubuntu/bionic64"
 	
 	config.vm.define :db do |db_config|
-		db_config.vm.network "private_network", ip: "192.168.50.11"
+		db_config.vm.network "private_network", ip: "192.168.50.10"
 
-		db_config.vm.provision "file", source: "sql/script.sql", destination: "script.sql"
+		db_config.vm.provision "file", source: "db/script.sql", destination: "script.sql"
+		db_config.vm.provision "file", source: "db/mysqld.cnf", destination: "mysqld.cnf"
 
 		db_config.vm.provision "ansible" do |ansible|
 			ansible.playbook = "playbooks/db.yml"
@@ -12,6 +13,6 @@ Vagrant.configure("2") do |config|
 	end
 	
 	config.vm.define :web do |web_config|
-		web_config.vm.network "private_network", ip: "192.168.50.10"
+		web_config.vm.network "private_network", ip: "192.168.50.11"
 	end
 end
