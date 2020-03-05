@@ -3,6 +3,12 @@ Vagrant.configure("2") do |config|
 	
 	config.vm.define :db do |db_config|
 		db_config.vm.network "private_network", ip: "192.168.50.11"
+
+		db_config.vm.provision "file", source: "sql/script.sql", destination: "script.sql"
+
+		db_config.vm.provision "ansible" do |ansible|
+			ansible.playbook = "playbooks/db.yml"
+		end 
 	end
 	
 	config.vm.define :web do |web_config|
