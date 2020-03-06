@@ -1,0 +1,13 @@
+pipeline {
+   agent any
+
+   stages {
+      stage('Build & Test') {
+         steps {
+            git 'https://adcbad7664a7c01d6706705d572951fb0b1667c5@github.com/newtonbeck/curso-devops.git'
+
+            sh "mvn clean test"
+         }
+      }
+   }
+}

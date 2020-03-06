@@ -12,10 +12,12 @@
     become: yes
     apt:
       update_cache: yes
-  - name: Install Java
+  - name: Install Java & Maven
     become: yes
     apt:
-      name: openjdk-8-jre
+      name: 
+      - openjdk-8-jdk-headless
+      - maven
   - name: Install Jenkins
     become: yes
     apt:
