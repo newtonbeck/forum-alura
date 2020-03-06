@@ -27,3 +27,5 @@
       src: ../ssh-keys/id_rsa
       dest: /home/vagrant/id_rsa
       mode: 400
+      owner: jenkins
+      group: jenkins
