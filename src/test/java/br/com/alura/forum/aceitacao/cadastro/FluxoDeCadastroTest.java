@@ -29,6 +29,7 @@ public class FluxoDeCadastroTest {
 		}
 	}
 	
+	@Ignore
 	@Test
 	public void deve_ser_capaz_de_criar_uma_conta() throws IOException, InterruptedException {
 		Faker faker = new Faker();
