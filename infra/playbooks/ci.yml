@@ -23,6 +23,7 @@
     apt:
       name: jenkins
   - name: Copy web SSH private key
+    become: yes
     copy:
       src: ../ssh-keys/id_rsa
       dest: /home/vagrant/id_rsa
