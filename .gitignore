@@ -33,3 +33,7 @@ HELP.md
 
 ### Vagrant ###
 .vagrant/
+
+### Docker ###
+infra/mysql/data
+
