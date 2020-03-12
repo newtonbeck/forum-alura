@@ -16,4 +16,5 @@ spec:
         - name: tomcat
           image: newtonbeck/alura-forum:latest
           ports:
-            - containerPort: 8080
+          - name: http
+            containerPort: 8080
