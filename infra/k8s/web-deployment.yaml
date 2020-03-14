@@ -30,11 +30,11 @@ spec:
         app: web
     spec:
       containers:
-      - image: newtonbeck/my-blog:latest
+      - image: newtonbeck/alura-forum:latest
         name: web
         env:
         - name: FORUM_DB_URL
-          value: jdbc:mysql://forum-mysql:3306/my_blog?useSSL=false
+          value: jdbc:mysql://forum-mysql:3306/alura_forum?useSSL=false
         - name: FORUM_DB_USER
           value: root
         - name: FORUM_DB_PASSWORD
