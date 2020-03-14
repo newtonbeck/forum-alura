@@ -3,9 +3,6 @@ kind: Deployment
 metadata:
   name: db
 spec:
-  selector:
-    matchLabels:
-      name: db-pod
   template:
     metadata:
       labels:
@@ -15,7 +12,8 @@ spec:
       - name: mysql
         image: mysql:5.7
         ports:
-        - containerPort: 3306
+        - name: mysql
+          containerPort: 3306
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: toor
